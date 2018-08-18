@@ -1,13 +1,13 @@
 import React from 'react';
 import Book from '../book/book';
 
-const Shelf = (props) => (
+const Shelf = ({ name, value, books, shelfChange }) => (
   <div className="bookshelf">
-    <h2 className="bookshelf-title">{props.name}</h2>
+    <h2 className="bookshelf-title">{name}</h2>
     <div className="bookshelf-books">
       <ol className="books-grid">
-        {props.books.map((book) => {
-          if (book.shelf === props.value)
+        {books.map((book) => {
+          if (book.shelf === value)
             return (
               <li key={book.id}>
                 <Book
@@ -15,7 +15,7 @@ const Shelf = (props) => (
                   thumbnail={book.imageLinks.smallThumbnail}
                   title={book.title}
                   authors={book.authors}
-                  shelfChange={(e) => props.shelfChange(book, e.target.value)} />
+                  shelfChange={(e) => shelfChange(book, e.target.value)} />
               </li>)
           else
             return null
